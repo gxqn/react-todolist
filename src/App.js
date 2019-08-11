@@ -12,10 +12,12 @@ class App extends Component {
     this.deleteTask = this.deleteTask.bind(this)
     this.taskDone = this.taskDone.bind(this)
     this.handleFilterList = this.handleFilterList.bind(this)
+    this.resetTaskClick = this.resetTaskClick.bind(this)
     this.state = {
       //初始化的任务列表（id,内容，状态）
       lists: [],
-      taskDone: 0
+      taskDone: 0,
+      setVal: {}
     }
   }
   //初始化lists和taskdone
@@ -40,7 +42,17 @@ class App extends Component {
   addNewTask(item) {
     //避免直接操作state数据
     let allTask = this.state.lists
-    allTask.push(item)
+    let resetIndex = -1
+    allTask.forEach((val,index) => {
+      if(val.id === item.id) {
+        resetIndex = index
+      }
+    })
+    if(resetIndex != -1) {
+      allTask.splice(resetIndex,1,item)
+    }else {
+      allTask.push(item)
+    }
     this.setState({
       lists: allTask
     })
@@ -84,7 +96,6 @@ class App extends Component {
     })
     localStorage.setItem('taskLists',JSON.stringify(lists))
   }
-
   //筛选不同任务
   handleFilterList(type) {
     console.log(type)
@@ -107,6 +118,13 @@ class App extends Component {
       lists: listTemp
     })
   }
+  //任务可修改
+  resetTaskClick(item) {
+    this.refs.addIpt.refs.ipt.value = item.cont
+    this.refs.addIpt.refs.ipt.focus()
+    this.refs.addIpt.refs.addWrap.setAttribute('data-id',item.id)
+    this.refs.addIpt.refs.addWrap.setAttribute('data-status',item.status)
+  }
 
   render() {
     return (
@@ -114,7 +132,7 @@ class App extends Component {
         <h3 className="App-title">任务列表</h3>
         <ul className="App-wrap">
           {this.state.lists.map((val,index) => {
-            return <ListItem deleteBtnClick={this.deleteTask} finishBtnClick={this.taskDone} key={index} list={val} val={val}></ListItem>
+            return <ListItem deleteBtnClick={this.deleteTask} finishBtnClick={this.taskDone} resetTask={this.resetTaskClick} key={index} list={val} val={val}></ListItem>
           })}
         </ul>
         <p className="App-taskNum">
@@ -122,7 +140,7 @@ class App extends Component {
           <span className="total">总计：<span>{this.state.lists.length}</span> 条</span>
         </p>
         <FilterBtn filterList={this.handleFilterList}></FilterBtn>
-        <AddInput clickAddBtn={this.addNewTask}></AddInput>
+        <AddInput ref="addIpt" clickAddBtn={this.addNewTask} iptVal={this.state.setVal}></AddInput>
       </div>
     )
   }

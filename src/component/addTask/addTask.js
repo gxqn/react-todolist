@@ -10,13 +10,24 @@ class AddInput extends Component {
 
 	handleAddBtnClick() {
 		if(this.refs.ipt.value && this.refs.ipt.value.trim() != '') {
-			let taskObj = {
+			let taskObj = {}
+			if(this.refs.addWrap.getAttribute('data-id') && this.refs.addWrap.getAttribute('data-status') != -1) {
+				taskObj = {
+					id: Number(this.refs.addWrap.getAttribute('data-id')),
+					cont: this.refs.ipt.value.trim(),
+					status: Number(this.refs.addWrap.getAttribute('data-status'))
+				}
+			}else {
+				taskObj = {
 				id: +new Date(),
 				cont: this.refs.ipt.value.trim(),
 				status: 0
+				}
 			}
 			this.props.clickAddBtn(taskObj)
 			this.refs.ipt.value = ''
+			this.refs.addWrap.setAttribute('data-id','')
+			this.refs.addWrap.setAttribute('data-status',-1)
 		}
 	}
 
@@ -28,7 +39,7 @@ class AddInput extends Component {
 
   render() {
     return (
-      <div className="addWrap">
+      <div className="addWrap" ref="addWrap" data-id="" data-status="-1">
 				<span className="addTitle">新建任务：</span>
 				<input className="addIpt" ref="ipt" placeholder="请输入新的任务" onKeyUp={this.handleKeyUp}></input>
 				<button className="addBtn" onClick={this.handleAddBtnClick}>保存</button>
