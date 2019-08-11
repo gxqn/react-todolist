@@ -11,6 +11,15 @@
     margin: 20px 5%;
     border-radius: 5px;
     border: 1px #bbb solid;
+    .tips {
+      @include Font(18px,#ccc);
+      @include Height(50px);
+      padding: 0 20px;
+      text-align: center;
+      &.unshow {
+        display: none;
+      }
+    }
   }
   .App-taskNum {
     float: left;

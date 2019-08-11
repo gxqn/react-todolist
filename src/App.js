@@ -134,6 +134,7 @@ class App extends Component {
           {this.state.lists.map((val,index) => {
             return <ListItem deleteBtnClick={this.deleteTask} finishBtnClick={this.taskDone} resetTask={this.resetTaskClick} key={index} list={val} val={val}></ListItem>
           })}
+          <li className={`tips ${this.state.lists.length === 0 ? '' : 'unshow'}`}>您暂时还没有添加新的任务</li>
         </ul>
         <p className="App-taskNum">
           <span className="done">已完成：<span>{this.state.taskDone}</span> 条</span>

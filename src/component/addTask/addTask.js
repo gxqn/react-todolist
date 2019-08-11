@@ -28,6 +28,8 @@ class AddInput extends Component {
 			this.refs.ipt.value = ''
 			this.refs.addWrap.setAttribute('data-id','')
 			this.refs.addWrap.setAttribute('data-status',-1)
+		}else {
+			alert('请输入具体的任务')
 		}
 	}
 
