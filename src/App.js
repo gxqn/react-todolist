@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 import './App.scss';
 import ListItem from './component/taskLists/taskLists';
 import AddInput from './component/addTask/addTask';
+import FilterBtn from './component/filterBtn/filterBtn';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
     this.addNewTask = this.addNewTask.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
     this.taskDone = this.taskDone.bind(this)
+    this.handleFilterList = this.handleFilterList.bind(this)
     this.state = {
       //初始化的任务列表（id,内容，状态）
       lists: [],
@@ -83,6 +85,29 @@ class App extends Component {
     localStorage.setItem('taskLists',JSON.stringify(lists))
   }
 
+  //筛选不同任务
+  handleFilterList(type) {
+    console.log(type)
+    let lists = [],listTemp = []
+    if(localStorage.getItem('taskLists')) {
+      lists = JSON.parse(localStorage.getItem('taskLists'))
+    }
+    if(type === 0) {
+      listTemp = lists
+    }else if(type === 1) {
+      listTemp = lists.filter((val,index) => {
+        return val.status === 1
+      })
+    }else if(type === 2) {
+      listTemp = lists.filter((val,index) => {
+        return val.status === 0
+      })
+    }
+    this.setState({
+      lists: listTemp
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -96,7 +121,7 @@ class App extends Component {
           <span className="done">已完成：<span>{this.state.taskDone}</span> 条</span>
           <span className="total">总计：<span>{this.state.lists.length}</span> 条</span>
         </p>
-        
+        <FilterBtn filterList={this.handleFilterList}></FilterBtn>
         <AddInput clickAddBtn={this.addNewTask}></AddInput>
       </div>
     )
