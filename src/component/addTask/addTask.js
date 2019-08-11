@@ -22,10 +22,8 @@ class AddInput extends Component {
   render() {
     return (
       <div className="addWrap">
-        <div className="inputWrap">
-					<span>新建任务：</span>
-					<input ref="ipt" placeholder="请输入新的任务"></input>
-				</div>
+				<span className="addTitle">新建任务：</span>
+				<input className="addIpt" ref="ipt" placeholder="请输入新的任务"></input>
 				<button className="addBtn" onClick={this.handleAddBtnClick}>保存</button>
       </div>
     )

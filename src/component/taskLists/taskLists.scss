@@ -1,0 +1,50 @@
+@import '../../stylus/common.scss';
+
+.Listitem-li {
+	@include Font(18px);
+	@include Height(50px);
+	border-bottom: 1px #bbb solid;
+	padding: 0 20px;
+	&:last-child {
+		border: 0;
+	}
+	&:hover {
+		.deleteBtn {
+			display: inline-block;
+		}
+	}
+	.chooseBtn {
+		width: 14px;
+		height: 14px;
+		display: inline-block;
+		border: 1px #ccc solid;
+		border-style: outset;
+		border-radius: 5px;
+		margin-right: 20px; 
+		cursor: pointer;
+		&.done {
+			background-color: $doneColor;
+			color: $doneColor;
+		}
+		&.undone {
+			background-color: $undoneColor;
+			color: $undoneColor;
+		}
+	}
+	.taskCont {
+		&.done {
+			color: $doneColor;
+			text-decoration: line-through
+		}
+		&.undone {
+			color: $undoneColor;
+		}
+	}
+	.deleteBtn {
+		display: none;
+		color: #ccc;
+		float: right;
+		cursor: pointer;
+		display: none;
+	}
+}

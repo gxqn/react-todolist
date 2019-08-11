@@ -1,0 +1,27 @@
+//resize
+* {
+	padding: 0;
+	margin: 0;
+}
+ul {
+	li {
+		list-style: none;
+	}
+}
+
+$blColor: #0094ff;
+$doneColor: #2EB872;
+$undoneColor: #FF9A3C;
+
+
+//居中
+@mixin Height($height) {
+	height: $height;
+	line-height: $height;
+}
+
+//字体
+@mixin Font($size: 14px,$color: #000) {
+	font-size: $size;
+	color: $color
+}

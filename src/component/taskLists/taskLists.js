@@ -18,10 +18,10 @@ class listItem extends Component {
 
 	render() {
 		return (
-			<li>
-				<span onClick={this.handleFinish} className="chooseBtn">{this.props.list.status == 0 ? '未完成':'已完成'}</span>
-				<span className="taskCont">{this.props.list.cont}</span>
-				<button onClick={this.handleDelte} className="deleteBtn">删除</button>
+			<li className="Listitem-li">
+				<span onClick={this.handleFinish} className={`chooseBtn ${this.props.val.status === 0 ? 'undone' : 'done'}`}></span>
+				<span className={`taskCont ${this.props.val.status === 0 ? 'undone' : 'done'}`}>{this.props.list.cont}</span>
+				<span onClick={this.handleDelte} className="deleteBtn">删除</span>
 			</li>)
 	}
 }

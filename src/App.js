@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import ListItem from './component/taskLists/taskLists';
 import AddInput from './component/addTask/addTask';
 
@@ -86,15 +86,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h3 className="title">任务列表</h3>
-        <ul>
+        <h3 className="App-title">任务列表</h3>
+        <ul className="App-wrap">
           {this.state.lists.map((val,index) => {
             return <ListItem deleteBtnClick={this.deleteTask} finishBtnClick={this.taskDone} key={index} list={val} val={val}></ListItem>
           })}
         </ul>
-        <p className="taskNum">
-          <span className="done">已完成：{this.state.taskDone}</span>
-          <span className="total">总计：{this.state.lists.length}</span>
+        <p className="App-taskNum">
+          <span className="done">已完成：<span>{this.state.taskDone}</span> 条</span>
+          <span className="total">总计：<span>{this.state.lists.length}</span> 条</span>
         </p>
         
         <AddInput clickAddBtn={this.addNewTask}></AddInput>

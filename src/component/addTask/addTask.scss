@@ -1,0 +1,36 @@
+@import '../../stylus/common.scss';
+
+.addWrap {
+  text-align: left;
+	margin: 0 5%;
+	padding: 30px 0;
+	overflow: hidden;
+	.addTitle {
+		float: left;
+		@include Height(40px)
+	}
+	.addIpt {
+		line-height: 40px;
+		float: left;
+		width: 70%;
+		border-radius: 5px;
+		border: none;
+		font-size: 16px;
+		box-sizing: border-box;
+		padding: 0 5px;
+		border: 1px #ccc solid;
+		outline: none;
+		box-shadow: 0 0 10px #ccc;
+	}
+	.addBtn {
+		border: none;
+		outline:none;
+		background-color: $blColor;
+		height: 42px;
+		width: 80px;
+		font-size: 18px;
+		color: #fff;
+		border-radius: 5px;
+		float: right;
+	}
+}
