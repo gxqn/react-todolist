@@ -1,0 +1,23 @@
+@import '../../stylus/common.scss';
+
+.btnWrap {
+	float: right;
+	margin-right: 6%;
+	.btn {
+		width: 60px;
+		@include Height(30px);
+		float: left;
+		margin-left: 20px;
+		border-radius: 5px;
+		color: #fff;
+		background-color: $blColor;
+		border: 0;
+		outline: 0;
+		&.done {
+			background-color: $doneColor;
+		}
+		&.undone {
+			background-color: $undoneColor;
+		}
+	}
+}

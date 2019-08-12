@@ -41,7 +41,10 @@ class App extends Component {
   //添加新任务
   addNewTask(item) {
     //避免直接操作state数据
-    let allTask = this.state.lists
+    let allTask = []
+    if(localStorage.getItem('taskLists')) {
+      allTask = JSON.parse(localStorage.getItem('taskLists'))
+    }
     let resetIndex = -1
     allTask.forEach((val,index) => {
       if(val.id === item.id) {
@@ -98,7 +101,6 @@ class App extends Component {
   }
   //筛选不同任务
   handleFilterList(type) {
-    console.log(type)
     let lists = [],listTemp = []
     if(localStorage.getItem('taskLists')) {
       lists = JSON.parse(localStorage.getItem('taskLists'))
